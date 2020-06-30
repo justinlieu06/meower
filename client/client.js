@@ -36,6 +36,7 @@ form.addEventListener('submit', (event) => {
     });
 });
 
+//pull all mews and append them to database
 function listAllMews(){
   fetch(API_URL)
     .then(response => response.json())
