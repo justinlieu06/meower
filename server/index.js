@@ -1,11 +1,13 @@
 const express = require('express');
 const cors = require('cors');
 const monk = require('monk');
+const Filter = require('bad-words');
 
 const app = express();
 
 const db = monk('localhost/meower');
 const mews = db.get('mews');
+const filter = new Filter();
 
 app.use(cors());
 app.use(express.json());
@@ -34,8 +36,8 @@ app.post('/mews', (req, res)=> {
     //insert into db...
 
     const mew = {
-      name: req.body.name.toString(),
-      content: req.body.content.toString(),
+      name: filter.clean(req.body.name.toString()),
+      content: filter.clean(req.body.content.toString()),
       created: new Date(),
     };
 
