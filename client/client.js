@@ -29,9 +29,10 @@ form.addEventListener('submit', (event) => {
     }
   }).then(response => response.json())
     .then(createdMew => {
-      console.log(createdMew);
       form.reset();
-      form.style.display = '';
+      setTimeout(() => {
+        form.style.display = '';
+      }, 30000);
       loadingElement.style.display = 'none';
     });
 });
